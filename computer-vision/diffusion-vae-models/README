@@ -1,0 +1,55 @@
+# Generative Models on FashionMNIST: Diffusion and VAE
+
+## Overview
+
+This project implements and compares two generative models—Diffusion Models and Variational Autoencoders (VAEs)—on the FashionMNIST dataset. The goal is to train models that can generate realistic images conditioned on class labels, and to evaluate their generative quality using a pre-trained classifier.
+
+## Directory Structure
+
+- `diffusion_helper.ipynb`: Jupyter notebook for training, evaluating, and visualizing the Diffusion Model.
+- `vae_helper.ipynb`: Jupyter notebook for training, evaluating, and visualizing the VAE.
+- `diffusion_main.py`: Script for running the Diffusion Model pipeline from the command line.
+- `vae_main.py`: Script for running the VAE pipeline from the command line.
+- `diffusion.pt`: Saved weights for the trained Diffusion Model.
+- `vae.pt`: Saved weights for the trained VAE.
+- `classifier.pt`: Pre-trained classifier for evaluating generated samples.
+
+## Assumptions
+
+- The dataset used is FashionMNIST, with images resized to 28x28 grayscale.
+- All models are implemented in PyTorch.
+- The provided classifier (`classifier.pt`) is used to quantitatively evaluate the quality of generated samples.
+- The code assumes access to a CUDA-capable GPU for training, but can be modified to run on CPU.
+
+## How to Run
+
+### Using Jupyter Notebooks
+
+1. Open `vae_helper.ipynb` or `diffusion_helper.ipynb` in Jupyter Notebook or JupyterLab.
+2. Follow the notebook cells to:
+   - Prepare and visualize the dataset.
+   - Train the generative model (VAE or Diffusion).
+   - Generate and visualize new samples.
+   - Evaluate generated samples using the pre-trained classifier.
+
+### Using Python Scripts
+
+1. Ensure Python 3.8+ and PyTorch are installed.
+2. Install required dependencies:
+   ```sh
+   pip install torch torchvision matplotlib tqdm
+   ```
+3. To run the VAE pipeline:
+   ```sh
+   python vae_main.py
+   ```
+4. To run the Diffusion pipeline:
+   ```sh
+   python diffusion_main.py
+   ```
+
+## Notes
+- Pre-trained model weights (`vae.pt`, `diffusion.pt`, `classifier.pt`) are provided for quick evaluation without retraining.
+- The classifier is used to compute the accuracy of generated samples, providing a quantitative measure of generative quality.
+- The code can be extended or modified for further experiments, such as changing model architectures or training parameters.
+- Visualizations of generated samples can be found in the respective notebooks after running the training and generation cells.

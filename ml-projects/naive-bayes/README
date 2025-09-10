@@ -1,0 +1,55 @@
+# Naive Bayes & Decision Tree Classifiers
+
+This project contains implementations and experiments for Naive Bayes and Decision Tree classifiers. The code demonstrates how to train, validate, and test these models on real-world datasets, including the Lending Club dataset.
+
+## Summary
+
+The exercise explores two fundamental classification algorithms:
+
+- **Naive Bayes**: A probabilistic classifier based on Bayes' theorem with the assumption of feature independence.
+- **Decision Tree**: A non-parametric supervised learning method used for classification, which splits data into branches based on feature values.
+
+The code includes:
+- Implementations of both algorithms from scratch.
+- Experiment scripts to evaluate model performance.
+- Utilities for loading and processing datasets.
+- Test cases to verify correctness using provided `.pkl` files.
+
+## File Structure
+
+- `naive_bayes.py`: Implementation of the Naive Bayes classifier.
+- `decision_tree.py`: Implementation of the Decision Tree classifier.
+- `experiments.ipynb`: Jupyter notebook for running experiments, visualizing results, and comparing models.
+- `datasets/`: Contains pickled datasets for training, validation, and testing.
+
+## Assumptions
+
+- The dataset files (`lending_club.pkl`, `test_dt.pkl`, `test_nb.pkl`) are present in the `datasets/` directory.
+- The code is written for Python 3.10+ and uses only standard libraries and `numpy`, `matplotlib`.
+- The experiments are designed to be run in a Jupyter notebook environment.
+
+## How to Run
+
+1. **Install dependencies** (if not already installed):
+
+   ```sh
+   pip install numpy matplotlib
+   ```
+ 2. **Open the Jupyter notebook**:
+
+   ```sh
+   jupyter notebook experiments.ipynb
+   ```
+
+3. **Run the experiments**:
+Execute the cells in the notebook to train and evaluate the classifiers on the provided datasets:
+- Test the correctness of the implementations.
+- Run experiments on the Lending Club dataset.
+- Visualize training and validation accuracy curves.
+- Compare Naive Bayes and Decision Tree performance.
+The notebook will print accuracy metrics and display plots for model comparison.
+
+## Notes
+- The code is modular and can be extended to other datasets with similar structure.
+- Hyperparameters for the models can be tuned within the notebook.
+- The provided test cases ensure the correctness of the implementations.

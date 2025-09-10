@@ -4,7 +4,10 @@
 
 This project implements a Q-learning agent that learns to navigate a maze environment to reach a goal. The agent must find a key, avoid obstacles (walls and fire), and unlock the door to complete each episode. The environment is grid-based, and the agent receives rewards for reaching the goal and penalties for stepping into fire. The Q-learning algorithm updates an action-value table to learn the optimal policy through trial and error.
 
-## Code Overview
+## Screenshot
+![Q-learning Screenshot](screenshot.png)
+
+## Overview
 
 The code is organized into several modules:
 

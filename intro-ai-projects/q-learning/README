@@ -1,0 +1,57 @@
+# Q-Learning Agent in a Maze Environment
+
+## Problem Summary
+
+This project implements a Q-learning agent that learns to navigate a maze environment to reach a goal. The agent must find a key, avoid obstacles (walls and fire), and unlock the door to complete each episode. The environment is grid-based, and the agent receives rewards for reaching the goal and penalties for stepping into fire. The Q-learning algorithm updates an action-value table to learn the optimal policy through trial and error.
+
+## Code Overview
+
+The code is organized into several modules:
+
+- **main.py**  
+  Runs the training loop for the Q-learning agent, plots the learning curve, and displays a final greedy episode using a graphical interface.
+
+- **agent.py**  
+  Implements the `QLearningAgent` class, including the epsilon-greedy action selection and Q-value update logic.
+
+- **environment.py**  
+  Defines the `Maze` class, which models the gridworld environment, including walls, key, fire, and goal logic. Handles agent movement and reward structure.
+
+- **action_value_table.py**  
+  Provides the `ActionValueTable` class, which manages the Q-value table for all state-action pairs.
+
+- **tests.py**  
+  Contains public test cases to verify the correctness of the agent's action selection and update methods.
+
+- **requirements.txt**  
+  Lists the required Python packages: `matplotlib`, `numpy`, `pygame`, and `tqdm`.
+
+- **assets/**  
+  Contains image files used for rendering the maze environment (agent, key, door, fire, wall).
+
+- **code-qlearning.png**, **learning_curve.png**  
+  Images for illustration and output (learning curve is generated after training).
+
+## Assumptions
+
+- The agent's state includes whether it possesses the key and its position in the maze.
+- The environment is deterministic and fully observable.
+- The Q-value table is initialized to zeros.
+- The agent uses an epsilon-greedy policy for exploration.
+- The maze layout, rewards, and penalties are hardcoded in the environment.
+
+## How to Run
+
+From the `q-learning` directory, install the required packages (if not already installed):
+
+```sh
+pip install -r requirements.txt
+```
+
+Then, run the main script:
+
+```sh
+python3 main.py
+```
+
+This will train the agent, display a final greedy episode in a graphical window, and save the learning curve as learning_curve.png.

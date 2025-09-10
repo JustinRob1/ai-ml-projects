@@ -1,0 +1,36 @@
+# Variable Elimination in Bayesian Networks
+
+## Problem Summary
+
+This program implements the variable elimination algorithm for probabilistic inference in Bayesian networks. Given a set of factors representing the conditional probability tables (CPTs) of a belief network, the code computes the posterior distribution of a query variable given some observed evidence. The algorithm systematically eliminates variables according to a specified order, conditioning on observations and summing out hidden variables.
+
+## Code Overview
+
+The main logic is implemented in [`ve.py`](ve.py), which defines the `Factor` class for representing CPTs and the `var_elimination` function for performing inference. The code includes utilities for factor multiplication, conditioning, summing out variables, and normalization. Unit tests and an example Bayesian network are also provided.
+
+### Files
+
+- **ve.py**  
+  Implements the `Factor` class, the variable elimination algorithm (`var_elimination`), an example Bayesian network, and unit tests.  
+  - `Factor`: Represents a factor and supports operations needed for variable elimination.
+  - `var_elimination`: Performs inference to compute the posterior of a query variable given evidence.
+  - `example_bn()`: Returns a sample Bayesian network as a list of factors.
+  - `unit_tests()`: Runs tests to verify correctness of factor operations.
+  - `main()`: Runs the unit tests and demonstrates variable elimination on the example network.
+
+## Assumptions
+
+- The Bayesian network is provided as a list of `Factor` objects.
+- Observations are given as a dictionary mapping variable names to their observed values.
+- Variable elimination order is specified and must include all variables except the query.
+- The code assumes all factors and variable domains are correctly specified.
+
+## How to Run
+
+From the `variable-elimination` directory, run:
+
+```sh
+python3 ve.py
+```
+
+This will execute the unit tests and print the result of variable elimination on the example Bayesian network.

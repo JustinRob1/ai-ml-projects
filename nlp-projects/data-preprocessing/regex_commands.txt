@@ -1,0 +1,26 @@
+#Regex pattern to match every line of dialogue and capture only the dialogue
+re.compile(r'\*[A-Z]{3}:\t(.*)')  
+
+# Removes all non-alphanumeric characters, such as punctuation
+re.sub(r"[^\w\s'-]", '', match.group(1))
+
+# Removes all digits
+re.sub(r'[\d]', '', cleaned)
+
+# Removes all extra whitespace
+re.sub(r'\s+', ' ', cleaned)
+
+# Removes all lexical stress markers
+re.sub(r'\d', '', transformation) 
+
+# For words that are plural, but not in dictionary
+re.compile(r"(\w+)s")
+
+# For words that have an "'s" but not in dictionary
+re.compile(r"(.*)'s")  
+
+# Captures all the subwords in a hyphenated word
+re.compile(r"-?(\w+)-?")
+
+# Finds and captures all words and their transformations in the CMU Dictionary
+re.findall(r"([!\"#%&\(\)\{\}+,\.\:\;\?\/\d_A-Z'-]+)\s+(.*)", data, re.MULTILINE)

@@ -1,0 +1,17 @@
+Cleaning
+- Extranous characters (such as [] or ()) since they are not part of the speaker's utterance.
+- Punctuation is not said aloud in regular speech so we decided not to include it
+- Contractions and hypenated words are kept in the cleaned text since the dictionary is able to handle them.
+- Headers, speaker tages and special characters (NAK) are extranous infomration and are removed from the cleaned text.
+- Digits are removed from the cleaned data since it seems that if dialogue contains only a '0', it indicates that nothing was said
+- Any files in the /Data directory that are not .cha files are ignored and will not be cleaned
+
+Tranforming
+- Lexical Stress Markers are ingored. This is mainly a transformation task and translating stress would require more POS work. 
+- All digits are removed from the transformations, since they provide only stress information
+- Words that are not found in the dictionary are replaced with a <NF> tag. 
+- Any words with a trailing s were checked for pularity within the dictionary. (As an example if "worms" is not in the dictionary it was replaced by "worm" + Z)
+- Any words with an "'s" which were absent in the dictionary were replaced by the base word + Z. (As an example if "Paul's" is not in the dictionary it would be replaced by "Paul" + Z)
+- Any hyphenated words that were absent in the dictionary were replaced by the individual words present in it. ("language-systems" would be replaced by "language" "systems")
+- Words that were absent in the dictionary, and weren't found with any of the previous methods, were put into not_found.txt (The code for doing so was removed)
+- Misspelt words were ignored as they require contextual information to find the correct spelling. Hence they were assigned <NF>

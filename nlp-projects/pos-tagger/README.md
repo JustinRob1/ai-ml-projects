@@ -1,0 +1,141 @@
+# Part-of-Speech Taggers
+## Description
+
+This program trains a Hidden Markov Model (HMM) and Brill Tagger on provided training data and evaluates the performance 
+of the taggers on in-domain and out-of-domain test data. Both taggers are tuned by examining different parameter sets to maximize tagging accuracy. During the training process, a subset of the training data is extracted to decrease the time required to tune the parameters. After tuning, the taggers are trained on the complete training set and tested on the testing sets. HMM's tunable parameter is the estimator function and Brill's tunable parameter is the baseline template set. The program then writes the tagged sentences to the specified file and outputs the accuracy of the taggers on the test data.
+
+The HMM taggers and Brill taggers are implemented using the NLTK library. The HMM tagger is a generative tagger defined by a set of states and state-transition probabilities. This tagger assigns probabilities for every possible word and tag sequence and outputs the most likely tag sequence. The Brill tagger is a transformational tagger. It starts the training process with a baseline tagger and learns more parsing rules from word and tag sequence samples. 
+
+Input training and test data follow the format described in the [Input](#input) section. The output of the program is described in the [Output](#output) section. The input data and output data are part-of-speech tagged sentences corresponding to the Penn Treebank tagset. 
+
+## Instructions
+
+### 1. Setup Virtual Environment
+
+To run the program you must set up a virtual environment by executing the following command:
+
+`python3 -m venv venv`
+
+Activate the virtual environment:
+
+`source venv/bin/activate`
+
+### 2. Libraries
+
+Our program requires the use of the `nltk` and `numpy` modules. Once the virtual environment is activated, install the required libraries by executing the following command:
+
+`pip install nltk numpy`
+
+### 3. Python Version
+
+The Python version we used on the lab machine is 3.8.10
+
+### 4. Install Required Libraries
+
+To install the required libraries, execute the following commands:
+
+`pip install nltk numpy`
+
+### 5. Program Execution
+
+The program `src/main.py` receives the following four command line arguments (flag followed by the command line argument):
+1. `--tagger`: Indicates the tagger type. The can only be `hmm` or `brill`.
+2. `--train`: Path to the training data file. (e.g. `data/train.txt`)
+3. `--test`: Path to the test data file. (e.g. `data/test.txt`)
+4. `--output`: Path to the output file. (e.g. `output/test_hmm.txt`)
+
+The specified command line arguments must follow the flag and must be separated by a space.
+The command line arguments can be in any order as long as the flag is specified before the command line argument.
+All command line arguments are required.
+The commands must be executed in the root directory of the project.
+
+General format:
+
+`python3 src/main.py --tagger <tagger_type> --train <train_file> --test <test_file> --output <output_file>`
+
+Example usage:
+
+`python3 src/main.py --tagger hmm --train data/train.txt --test data/test.txt --output output/test_hmm.txt`
+
+This command will train a Hidden Markov Model tagger on the training data (`data/train.txt`) and evaluate the tagger on the in-domain test data (`--test data/test.txt`). The tagged sentences will be written to the output file `output/test_hmm.txt`.
+
+`python3 src/main.py --tagger brill --train data/train.txt --test data/test_ood.txt --output output/test_ood_hmm.txt`
+
+This command will train a Brill tagger on the training data (`data/train.txt`) and evaluate the tagger on the out-of-domain test data (`data/test_ood.txt`). The tagged sentences will be written to the output file `output/test_ood_hmm.txt`.
+
+## Input
+
+The assignment's training data can be found in [data/train.txt](data/train.txt), the in-domain test data can be found in [data/test.txt](data/test.txt), and the out-of-domain test data can be found in [data/test_ood.txt](data/test_ood.txt). The training data and the two test data files follow the same structure, a token and its corresponding Penn Treebank POS tag per line. Sentences are separated with an extra line between them. The training and in-domain test data are composed of travel and how-to guides, while the out-of-domain test data is composed of fiction texts.
+
+We assume that the input data is in the correct format and follows the Penn Treebank tagset. If the input data is not in the correct format, the program may not work as expected.
+
+Example training/test data:
+```
+Always RB
+wear VB
+ballet NN
+slippers NNS
+. .
+
+Stretch VB
+your PRP$
+muscles NNS
+thoroughly RB
+. .
+
+```
+
+## Output
+
+The program’s output file is a .txt file in the same format as the input training file. Each row in the output file contains either a token and its corresponding POS tag or an empty line to separate sentences. The output file contains the tagged sentences generated by the trained tagger on the given test data.
+
+Example output:
+```
+Always RB
+wear VB
+ballet NN
+slippers NNS
+. .
+
+Stretch VB
+your PRP$
+muscles NNS
+thoroughly RB
+. .
+
+```
+
+The program also prints the accuracy of the tagger (rounded to 4 decimal places) on the test data to the console. 
+
+For example, the following command:
+`python3 src/main.py --tagger hmm --train data/train.txt --test data/test.txt --output output/test_hmm.txt`
+
+Will output to the console:
+`Accuracy: 0.8285`
+
+## Files
+
+- `src/main`: The main program that trains the tagger and evaluates the tagger on the test data.
+- `data/train.txt`: The training data used to train the tagger.
+- `data/test.txt`: The in-domain test data used to evaluate the tagger. 
+- `data/test_ood.txt`: The out-of-domain test data used to evaluate the tagger. 
+- `output/test_hmm.txt`: The output file containing the tagged sentences generated by the HMM tagger on the in-domain test data.
+- `output/test_ood_hmm.txt`: The output file containing the tagged sentences generated by the HMM tagger on the out-of-domain test data.
+- `output/test_brill.txt`: The output file containing the tagged sentences generated by the Brill tagger on the in-domain test data.
+- `output/test_ood_brill.txt`: The output file containing the tagged sentences generated by the Brill tagger on the out-of-domain test data.
+- `report.pdf`: Contains discussion of tuning efforts, tagger performance, tagger comparison and tagger errors.
+
+## 3rd Party Libraries
+
+- nltk
+- numpy (Used by nltk)
+
+## Sources
+
+- https://www.nltk.org/api/nltk.tag.hmm.html#nltk.tag.hmm.HiddenMarkovModelTagger
+- https://www.nltk.org/api/nltk.tag.brill.html#nltk.tag.brill.BrillTagger
+- https://gist.github.com/blumonkey/007955ec2f67119e0909
+- https://www.geeksforgeeks.org/how-to-read-from-a-file-in-python/
+- https://www.geeksforgeeks.org/writing-to-file-in-python/
+- https://www.geeksforgeeks.org/nlp-brill-tagger/
+- https://tedboy.github.io/nlps/generated/generated/nltk.TaggerI.html
